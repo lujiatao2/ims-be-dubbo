@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lujiatao.ims.service.repository.GoodsCategoryDAO">
+
+    <insert id="insert">
+        INSERT INTO goods_category (`name`)
+        VALUES (#{name})
+    </insert>
+
+    <update id="update">
+        UPDATE goods_category
+        SET `name` = #{name}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteById">
+        DELETE
+        FROM goods_category
+        WHERE id = #{id}
+    </delete>
+
+    <select id="selectById" resultType="com.lujiatao.ims.common.entity.GoodsCategory">
+        SELECT *
+        FROM goods_category
+        WHERE id = #{id}
+    </select>
+
+    <select id="selectByName" resultType="com.lujiatao.ims.common.entity.GoodsCategory">
+        SELECT *
+        FROM goods_category
+        WHERE `name` = #{name}
+        ORDER BY id DESC
+    </select>
+
+    <select id="selectAll" resultType="com.lujiatao.ims.common.entity.GoodsCategory">
+        SELECT *
+        FROM goods_category
+        ORDER BY id DESC
+    </select>
+
+</mapper>

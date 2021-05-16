@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lujiatao.ims.service.repository.UserDAO">
+
+    <insert id="insert">
+        INSERT INTO `user` (username, `password`, role)
+        VALUES (#{username}, #{password}, #{role})
+    </insert>
+
+    <update id="update">
+        UPDATE `user`
+        SET username   = #{username},
+            `password` = #{password},
+            role       = #{role},
+            is_active  = #{isActive}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteById">
+        DELETE
+        FROM `user`
+        WHERE id = #{id}
+    </delete>
+
+    <select id="selectById" resultType="com.lujiatao.ims.common.entity.User">
+        SELECT *
+        FROM `user`
+        WHERE id = #{id}
+    </select>
+
+    <select id="selectByUsername" resultType="com.lujiatao.ims.common.entity.User">
+        SELECT *
+        FROM `user`
+        WHERE username = #{username}
+        ORDER BY id DESC
+    </select>
+
+    <select id="selectAll" resultType="com.lujiatao.ims.common.entity.User">
+        SELECT *
+        FROM `user`
+        ORDER BY id DESC
+    </select>
+
+</mapper>

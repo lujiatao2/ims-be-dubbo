@@ -1,0 +1,7 @@
+dubbo:
+  application:
+    name: ims-web
+  registry:
+    address: ${ZOOKEEPER_URL:zookeeper://127.0.0.1:2181}
+server:
+  port: 8083

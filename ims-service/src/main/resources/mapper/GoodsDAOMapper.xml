@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lujiatao.ims.service.repository.GoodsDAO">
+
+    <insert id="insert">
+        INSERT INTO goods (brand, model, `desc`, goods_category_id)
+        VALUES (#{brand}, #{model}, #{desc}, #{goodsCategoryId})
+    </insert>
+
+    <update id="update">
+        UPDATE goods
+        SET brand             = #{brand},
+            model             = #{model},
+            `desc`            = #{desc},
+            `count`           = #{count},
+            goods_category_id = #{goodsCategoryId}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteById">
+        DELETE
+        FROM goods
+        WHERE id = #{id}
+    </delete>
+
+    <select id="selectById" resultType="com.lujiatao.ims.common.entity.Goods">
+        SELECT *
+        FROM goods
+        WHERE id = #{id}
+    </select>
+
+    <select id="select" parameterType="Integer" resultType="com.lujiatao.ims.common.entity.Goods">
+        SELECT * FROM goods
+        <where>
+            <if test="goodsCategoryId != null and goodsCategoryId != 0">
+                AND goods_category_id = #{goodsCategoryId}
+            </if>
+            <if test="brand != null and brand != ''">
+                AND brand = #{brand}
+            </if>
+            <if test="model != null and model != ''">
+                AND model = #{model}
+            </if>
+        </where>
+        ORDER BY id DESC
+    </select>
+
+    <select id="selectAll" resultType="com.lujiatao.ims.common.entity.Goods">
+        SELECT *
+        FROM goods
+        ORDER BY id DESC
+    </select>
+
+</mapper>
